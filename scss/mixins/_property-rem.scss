@@ -1,0 +1,41 @@
+/*
+	This mixin is used for whole style properties e.g.
+
+	@include propertyRem(padding, 24px 24px 24px 24px);
+	@include propertyRem(margin, 12px 24px);
+
+	Pass in pixel values as the second argument and it will convert to `rem` units to keep the sizing
+	accessible based on the users default browser font size.
+*/
+
+@mixin propertyRem($property, $values) {
+	$px: ();
+	$rem: ();
+
+	@each $value in $values {
+		@if $value == 0 or $value == auto {
+			$px: append($px, $value);
+			$rem: append($rem, $value);
+		} @else {
+			$unit: unit($value);
+			$val: stripUnit($value);
+
+			@if $unit == "px" {
+				$px: append($px, $value);
+				$rem: append($rem, (calc($val / 10) + rem));
+			}
+
+			@if $unit == "rem" {
+				$px: append($px, ($val * 10 + px));
+				$rem: append($rem, $value);
+			}
+		}
+	}
+
+	@if $px == $rem {
+		#{$property}: $px;
+	} @else {
+		#{$property}: $px;
+		#{$property}: $rem;
+	}
+}

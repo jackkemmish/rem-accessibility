@@ -1,0 +1,10 @@
+/*
+	This function is used for converting a `px` unit to `rem` e.g.
+
+	font-size: rem(16px);
+	margin-bottom: rem(24px);
+*/
+
+@function rem($pxValue) {
+	@return #{calc(stripUnit($pxValue) / stripUnit(10))}rem;
+}

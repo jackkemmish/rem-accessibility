@@ -1,0 +1,87 @@
+@import './functions/strip-unit';
+@import './mixins/property-rem';
+@import './mixins/to-rem';
+
+:root {
+	// Colours
+	--dark-black: #0e1111;
+	--medium-black: #232b2b;
+	--white: #ffffff;
+
+	// Font family
+	--base-font-family: "Syne", sans-serif;
+
+	// Font weight
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+	--font-weight-semi-bold: 600;
+	--font-weight-bold: 700;
+	--font-weight-extra-bold: 800;
+
+	// Font sizes
+	--base-font-size: 2rem;
+	--heading-font-size: clamp(1rem, -0.875rem + 8.333vw, 2rem);
+	--subtitle-font-size: clamp(1rem, -0.875rem + 7.333vw, 1.3rem);
+	--form-response-font-size: clamp(1rem, -0.875rem + 8.333vw, 1.2rem);
+	--link-font-size: clamp(#{rem(16px)}, 4vw, #{rem(33px)});
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	box-sizing: border-box;
+	overflow-x: hidden;
+	/* 62.5% of 16px browser font size is 10px */
+	font-size: 62.5%;
+}
+
+body {
+	background-color: var(--dark-black);
+	font-family: var(--base-font-family);
+	font-weight: var(--font-weight-regular);
+	font-size: var(--base-font-size);
+	color: var(--white);
+	@include propertyRem(padding, 24px);
+
+	// sticky footer
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+main {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.typ {
+	& > * {
+		&:first-child {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
+
+	& > * + * {
+		@include propertyRem(margin-block-start, 15px);
+	}
+
+	a {
+		display: block;
+		font-size: var(--link-font-size);
+		color: var(--white);
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
