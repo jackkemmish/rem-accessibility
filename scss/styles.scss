@@ -85,3 +85,7 @@ main {
 		}
 	}
 }
+
+.display-title {
+	font-size: clamp(#{rem(52px)}, 6vw, #{rem(72px)});
+}
