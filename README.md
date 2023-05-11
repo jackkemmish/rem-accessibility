@@ -1,7 +1,5 @@
 # REM Accessibility
 
----
-
 This is an example for using `rem` as a font size, or other sizes with the 62.5% font base font size trick.
 
 It also has a couple of `mixins` to help converting a `px` unit to a `rem` unit.
